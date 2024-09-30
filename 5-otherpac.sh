@@ -18,7 +18,7 @@ __EOF__
 rm -rf /home/${usernm}/$aur
 
 # Install other packages
-pacman -S --noconfirm clamav ufw opendoas networkmanager pacman-contrib
+pacman -S --noconfirm clamav ufw opendoas networkmanager pacman-contrib starship chezmoi
 
 # Disable nopassword
 sudo sed -e "s/${sudoop}//g" /etc/sudoers | sudo EDITOR=tee visudo > /dev/null
