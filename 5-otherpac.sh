@@ -1,7 +1,7 @@
 #!/bin/bash
 # Value
 usernm=$1
-aur=yay
+aur=$2
 sudoop="$usernm ALL=NOPASSWD: ALL"
 
 # arch-chroot
