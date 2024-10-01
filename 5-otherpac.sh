@@ -17,11 +17,11 @@ cd $aur && makepkg -si --noconfirm
 __EOF__
 rm -rf /home/${usernm}/$aur
 
-# Install other packages
-pacman -S --noconfirm clamav ufw opendoas networkmanager pacman-contrib
-
 # Disable nopassword
 sudo sed -e "s/${sudoop}//g" /etc/sudoers | sudo EDITOR=tee visudo > /dev/null
+
+# Install other packages
+pacman -S --noconfirm clamav ufw opendoas networkmanager pacman-contrib
 
 # Setting Packages
 # Clamav
