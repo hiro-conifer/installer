@@ -19,6 +19,7 @@ $aur --noconfirm sway{fx,lock-effects,idle,bg} waybar grim slurp \
                  chezmoi vivaldi
 
 # Chezmoi
+cd ~/
 chezmoi init https://github.com/hiro-conifer/dotfiles
 chezmoi apply
 
