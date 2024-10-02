@@ -1,21 +1,25 @@
 #!/bin/bash
 # Value
 usernm=$1
-aur=yay
+aur=$2
 sudoop="$usernm ALL=NOPASSWD: ALL"
 
 # arch-chroot
 arch-chroot /mnt << _EOF_
 
-# Enable nopassword
+# Enable nopassword & Change user
 echo ${sudoop} | EDITOR='tee -a' visudo > /dev/null
+su $usernm << __EOF__
 
 # Install AUR Helper
-su $usernm << __EOF__
-$aur --noconfirm swayfx vivaldi
-__EOF__
+$aur --noconfirm swayfx chezmoi vivaldi
 
-# Disable nopassword
+# Chezmoi
+chezmoi init https://github.com/hiro-conifer/dotfiles
+chezmoi apply
+
+# Change user & Disable nopassword
+__EOF__
 sudo sed -e "s/${sudoop}//g" /etc/sudoers | EDITOR=tee visudo > /dev/null
 
 # Vivaldi
