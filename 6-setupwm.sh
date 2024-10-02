@@ -12,7 +12,11 @@ echo ${sudoop} | EDITOR='tee -a' visudo > /dev/null
 su $usernm << __EOF__
 
 # Install AUR Helper
-$aur --noconfirm swayfx chezmoi vivaldi
+$aur --noconfirm sway{fx,lock-effects,idle,bg} waybar grim slurp \
+                 kitty wofi nnn \
+                 pipewire wireplumber pipewire-{alsa,pulse} pavucontrol playerctl \
+                 bluez{,-utils} blueman \
+                 chezmoi vivaldi
 
 # Chezmoi
 chezmoi init https://github.com/hiro-conifer/dotfiles
