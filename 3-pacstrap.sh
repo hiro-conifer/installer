@@ -18,11 +18,9 @@ mount --mkdir $part_boot /mnt/boot
 confPacman "/etc/pacman.conf"
 pacman --noconfirm -Sy archlinux-keyring
 pacstrap /mnt base{,-devel} linux-{zen{,-headers},firmware} 
-pacstrap /mnt booster $ucode git go wget neovim zsh \
-              starship \
+pacstrap /mnt booster $ucode git go wget neovim zsh starship \
               man{,-db,-pages} \
               rclone openssh \
               unarchiver \
-              btop \
-	      chezmoi
+              btop
 confPacman "/mnt/etc/pacman.conf"
