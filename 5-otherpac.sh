@@ -7,11 +7,11 @@ sudoop="$usernm ALL=NOPASSWD: ALL"
 # arch-chroot
 arch-chroot /mnt << _EOF_
 
-# Enable nopassword
-echo ${sudoop} | sudo EDITOR='tee -a' visudo > /dev/null
+# Enable nopassword & Change user
+echo ${sudoop} | EDITOR='tee -a' visudo > /dev/null
+su $usernm << __EOF__
 
 # Install AUR Helper
-su $usernm << __EOF__
 cd && git clone https://aur.archlinux.org/$aur.git
 cd $aur && makepkg -si --noconfirm
 
