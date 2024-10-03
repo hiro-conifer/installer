@@ -3,6 +3,7 @@
 usernm=$1
 aur=$2
 sudoop="$usernm ALL=NOPASSWD: ALL"
+dotdir=/home/${usernm}/.local/share/chezmoi
 
 # arch-chroot
 arch-chroot /mnt << _EOF_
@@ -19,7 +20,7 @@ $aur -S --noconfirm sway{fx,lock-effects,idle,bg} waybar grim slurp \
                  chezmoi vivaldi
 
 # Chezmoi
-mkdir -p /home/${usernm}/.local/share/chezmoi && git clone https://github.com/hiro-conifer/dotfiles
+mkdir -p $dotdir && git clone https://github.com/hiro-conifer/dotfiles $dotdir
 chezmoi apply
 
 # Change user & Disable nopassword
