@@ -16,7 +16,8 @@ su $usernm << __EOF__
 # Install AUR Helper
 $aur -S --noconfirm xorg-xwayland qt5-wayland \
                     sway{fx,lock-effects,idle,bg} waybar grim slurp \
-                    kitty wofi nnn \
+                    noto-fonts{,-{cjk,emoji,extra}} \
+                    kitty wofi nnn neofetch \
                     pipewire wireplumber pipewire-{alsa,pulse} pavucontrol playerctl \
                     bluez{,-utils} blueman \
                     fcitx5-mozc \
@@ -34,6 +35,10 @@ chezmoi apply
 # Change user & Disable nopassword
 __EOF__
 sudo sed -e "s/${sudoop}//g" /etc/sudoers | EDITOR=tee visudo > /dev/null
+
+# Sway
+sed -i -e "s/\(Exec=\)sway/\1\/usr\/local\/bin\/sway.sh/" /usr/share/wayland-sessions/sway.desktop
+mv ${userdir}/Documents/sway.sh /usr/local/bin/ && chmod 775 /usr/local/bin/sway.sh
 
 # Vivaldi
 sed -i -e "s/\(Exec=\/usr\/bin\/vivaldi-stable\) \(%U\)/\1 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime \2/" /usr/share/applications/vivaldi-stable.desktop
