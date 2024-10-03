@@ -3,7 +3,8 @@
 usernm=$1
 aur=$2
 sudoop="$usernm ALL=NOPASSWD: ALL"
-dotdir=/home/${usernm}/.local/share/chezmoi
+userdir=/home/${usernm}
+dotdir=${userdir}/.local/share/chezmoi
 
 # arch-chroot
 arch-chroot /mnt << _EOF_
@@ -22,6 +23,9 @@ $aur -S --noconfirm xorg-xwayland qt5-wayland \
                     xdg-desktop-portal{,-{gtk,wlr}} \
                     exa bat \
                     chezmoi vivaldi
+
+# Neovim(Install vim-jetpack)
+curl -fLo ${userdir}/.local/share/nvim/site/pack/jetpack/opt/vim-jetpack/plugin/jetpack.vim --create-dirs https://raw.githubusercontent.com/tani/vim-jetpack/master/plugin/jetpack.vim
 
 # Chezmoi
 mkdir -p $dotdir && git clone https://github.com/hiro-conifer/dotfiles $dotdir
