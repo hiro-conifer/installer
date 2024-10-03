@@ -2,12 +2,12 @@
 # Value
 usernm=$1
 aur=$2
+sudoop="$usernm ALL=NOPASSWD: ALL"
 
 # arch-chroot
 arch-chroot /mnt << _EOF_
 
 # Enable nopassword & Change user
-sudoop="$usernm ALL=NOPASSWD: ALL"
 echo ${sudoop} | EDITOR='tee -a' visudo > /dev/null
 su $usernm << __EOF__
 
