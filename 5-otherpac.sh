@@ -2,12 +2,12 @@
 # Value
 usernm=$1
 aur=$2
-sudoop="$usernm ALL=NOPASSWD: ALL"
 
 # arch-chroot
 arch-chroot /mnt << _EOF_
 
 # Enable nopassword & Change user
+sudoop="$usernm ALL=NOPASSWD: ALL"
 echo ${sudoop} | EDITOR='tee -a' visudo > /dev/null
 su $usernm << __EOF__
 
@@ -19,7 +19,7 @@ cd $aur && makepkg -si --noconfirm
 __EOF__
 sudo sed -e "s/${sudoop}//g" /etc/sudoers | EDITOR=tee visudo > /dev/null
 
-# Remove Yay Installer
+# Remove AUR Installer
 rm -rf /home/${usernm}/$aur
 
 # Install other packages
