@@ -14,11 +14,13 @@ echo ${sudoop} | sudo EDITOR='tee -a' visudo > /dev/null
 su $usernm << __EOF__
 cd && git clone https://aur.archlinux.org/$aur.git
 cd $aur && makepkg -si --noconfirm
-__EOF__
-rm -rf /home/${usernm}/$aur
 
-# Disable nopassword
-sudo sed -e "s/${sudoop}//g" /etc/sudoers | sudo EDITOR=tee visudo > /dev/null
+# Change user & Disable nopassword
+__EOF__
+sudo sed -e "s/${sudoop}//g" /etc/sudoers | EDITOR=tee visudo > /dev/null
+
+# Remove Yay Installer
+rm -rf /home/${usernm}/$aur
 
 # Install other packages
 pacman -S --noconfirm clamav ufw opendoas networkmanager pacman-contrib
