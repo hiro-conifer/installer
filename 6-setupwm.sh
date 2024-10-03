@@ -13,11 +13,15 @@ echo ${sudoop} | EDITOR='tee -a' visudo > /dev/null
 su $usernm << __EOF__
 
 # Install AUR Helper
-$aur -S --noconfirm sway{fx,lock-effects,idle,bg} waybar grim slurp \
-                 kitty wofi nnn \
-                 pipewire wireplumber pipewire-{alsa,pulse} pavucontrol playerctl \
-                 bluez{,-utils} blueman \
-                 chezmoi vivaldi
+$aur -S --noconfirm xorg-xwayland qt5-wayland \
+                    sway{fx,lock-effects,idle,bg} waybar grim slurp \
+                    kitty wofi nnn \
+                    pipewire wireplumber pipewire-{alsa,pulse} pavucontrol playerctl \
+                    bluez{,-utils} blueman \
+                    fcitx5-mozc \
+                    xdg-desktop-portal{,-{gtk,wlr}} \
+                    exa bat \
+                    chezmoi vivaldi
 
 # Chezmoi
 mkdir -p $dotdir && git clone https://github.com/hiro-conifer/dotfiles $dotdir
