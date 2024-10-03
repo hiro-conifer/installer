@@ -39,8 +39,8 @@ do
 done
 
 # Value
-rootpw=$(typeVal "Type root password")
+rootpw=$(typeVal "Type root password.")
 usernm=$(typeVal "Type user name.")
-userpw=$(typeVal "Type $usernm password.")
-hostnm=$(typeVal "type host name")
+userpw=$(typeVal "Type "$usernm" password.")
+hostnm=$(typeVal "type host name.")
 aur=yay
