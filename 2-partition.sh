@@ -7,7 +7,7 @@ part_root=$3
 # Create partition
 sgdisk -Z $part
 sgdisk -o $part
-sgdisk -n 1:0:+300M -t 1:ef00 $part
+sgdisk -n 1:0:+512M -t 1:ef00 $part
 sgdisk -n 2:0: -t 2:8304 $part
 
 # Format partitions
