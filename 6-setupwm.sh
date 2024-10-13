@@ -15,7 +15,8 @@ su $usernm << __EOF__
 
 # Install AUR Helper
 $aur -S --noconfirm xorg-xwayland qt5-wayland \
-                    sway{fx,lock-effects,idle,bg} waybar grim slurp \
+                    sway{fx,lock-effects,idle,bg} waybar grim slurp kanshi \
+                    nwg-look {materia-gtk,papirus-icon}-theme \
                     noto-fonts{,-{cjk,emoji,extra}} \
                     kitty wofi nnn neofetch \
                     pipewire wireplumber pipewire-{alsa,pulse} pavucontrol playerctl \
