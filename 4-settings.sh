@@ -35,7 +35,7 @@ echo -e "127.0.0.1 localhost\n::1 localhost\n127.0.1.1 ${hostnm}.localdomain ${h
 
 # Setting zram
 echo zram > /etc/modules-load.d/zram.conf
-echo ACTION=="add", KERNEL=="zram0", ATTR{comp_algorithm}="zstd", ATTR{disksize}="4G", RUN="/usr/bin/mkswap -U clear /dev/%k", TAG+="systemd" > /etc/udev/rules.d/99-zram.rules
+echo ACTION==\"add\", KERNEL==\"zram0\", ATTR{comp_algorithm}=\"zstd\", ATTR{disksize}="4G", RUN=\"/usr/bin/mkswap -U clear /dev/%k\", TAG+=\"systemd\" > /etc/udev/rules.d/99-zram.rules
 echo dev/zram0 none swap defaults,pri=100 0 0 >> /etc/fstab
 
 # Create User
