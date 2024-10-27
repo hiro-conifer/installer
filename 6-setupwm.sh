@@ -14,20 +14,17 @@ echo ${sudoop} | EDITOR='tee -a' visudo > /dev/null
 su $usernm << __EOF__
 
 # Install AUR Helper
-$aur -S --noconfirm xorg-xwayland qt5-wayland \
+$aur -S --noconfirm xorg-xwayland {qt5,qt6}-wayland \
                     sway{fx,lock-effects,idle,bg} waybar grim slurp kanshi \
                     nwg-look {materia-gtk,papirus-icon}-theme \
-                    noto-fonts{,-{cjk,emoji,extra}} \
+                    noto-fonts{,-{cjk,emoji,extra}} ttf-{defavu,jetbrains-mono-nerd,liberation}\
                     kitty wofi nnn neofetch \
                     pipewire wireplumber pipewire-{alsa,pulse} pavucontrol playerctl \
                     bluez{,-utils} blueman \
                     fcitx5-mozc \
                     xdg-desktop-portal{,-{gtk,wlr}} \
                     exa bat \
-                    chezmoi vivaldi
-
-# Neovim(Install vim-jetpack)
-curl -fLo ${userdir}/.local/share/nvim/site/pack/jetpack/opt/vim-jetpack/plugin/jetpack.vim --create-dirs https://raw.githubusercontent.com/tani/vim-jetpack/master/plugin/jetpack.vim
+                    chezmoi vivaldi steam
 
 # Chezmoi
 mkdir -p $dotdir && git clone https://github.com/hiro-conifer/dotfiles $dotdir
