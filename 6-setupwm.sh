@@ -33,15 +33,15 @@ curl -fLo ${userdir}/.local/share/nvim/site/pack/jetpack/opt/vim-jetpack/plugin/
 mkdir -p $dotdir && git clone https://github.com/hiro-conifer/dotfiles $dotdir
 chezmoi apply
 
+# Vivaldi
+ln -sf ${userdir}/.config/chromium-flags.conf ${userdir}/.config/vivaldi-stable.conf
+
 # Change user & Disable nopassword
 __EOF__
 sudo sed -e "s/${sudoop}//g" /etc/sudoers | EDITOR=tee visudo > /dev/null
 
 # Sway
 sed -i -e "s/\(Exec=\)sway/\1\/usr\/local\/bin\/sway.sh/" /usr/share/wayland-sessions/sway.desktop
-mv ${userdir}/Documents/sway.sh /usr/local/bin/ && chmod 775 /usr/local/bin/sway.sh
-
-# Vivaldi
-sed -i -e "s/\(Exec=\/usr\/bin\/vivaldi-stable\) \(%U\)/\1 --disk-cache-dir=\/tmp --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime \2/" /usr/share/applications/vivaldi-stable.desktop
+mv ${userdir}/.local/bin/sway.sh /usr/local/bin/ && chmod 775 /usr/local/bin/sway.sh
 
 _EOF_
