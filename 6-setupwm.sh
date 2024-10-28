@@ -15,16 +15,19 @@ su $usernm << __EOF__
 
 # Install AUR Helper
 $aur -S --noconfirm xorg-xwayland {qt5,qt6}-wayland \
-                    sway{fx,lock-effects,idle,bg} waybar grim slurp kanshi \
+                    sway{fx,lock-effects,idle,bg} waybar grim slurp kanshi mako \
                     nwg-look {materia-gtk,papirus-icon}-theme \
+                    lightdm{,-webkit2-{greeter,theme-glorious}} \
+                    polkit{,-gnome} \
                     noto-fonts{,-{cjk,emoji,extra}} ttf-{defavu,jetbrains-mono-nerd,liberation}\
-                    kitty wofi nnn neofetch \
+                    kitty wofi nnn neofetch cli-visualizer \
                     pipewire wireplumber pipewire-{alsa,pulse} pavucontrol playerctl \
                     bluez{,-utils} blueman \
-                    fcitx5-mozc \
+                    fcitx5{,-{configtool,gtk,mozc,qt}} \
                     xdg-desktop-portal{,-{gtk,wlr}} \
                     exa bat \
-                    chezmoi vivaldi steam
+                    chezmoi vivaldi chromium \
+                    steam{,tinkerlaunch} heroic-games-launcher
 
 # Chezmoi
 mkdir -p $dotdir && git clone https://github.com/hiro-conifer/dotfiles $dotdir
