@@ -32,6 +32,7 @@ $aur -S --noconfirm xorg-xwayland {qt5,qt6}-wayland \
 # Chezmoi
 mkdir -p $dotdir && git clone https://github.com/hiro-conifer/dotfiles $dotdir
 chezmoi apply
+chmod -R 775 ${userdir}/.local/bin
 
 # Vivaldi
 ln -sf ${userdir}/.config/chromium-flags.conf ${userdir}/.config/vivaldi-stable.conf
@@ -43,5 +44,8 @@ sudo sed -e "s/${sudoop}//g" /etc/sudoers | EDITOR=tee visudo > /dev/null
 # Sway
 sed -i -e "s/\(Exec=\)sway/\1\/usr\/local\/bin\/sway.sh/" /usr/share/wayland-sessions/sway.desktop
 mv ${userdir}/.local/bin/sway.sh /usr/local/bin/ && chmod 775 /usr/local/bin/sway.sh
+
+#lightdm
+mv ${userdir}/.local/bin/Wsession /etc/lightdm/
 
 _EOF_
