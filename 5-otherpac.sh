@@ -34,7 +34,7 @@ freshclam
 ufw default deny
 
 # Opendoas
-echo permit setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin} :wheel > /etc/doas.conf && chmod -c 0400 /etc/doas.conf
+echo -e "permit setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin} :wheel\npermit persist :wheel" > /etc/doas.conf && chmod -c 0400 /etc/doas.conf
 
 # Enable Services
 systemctl enable {ufw,NetworkManager,systemd-{resolved,timesyncd},sshd}.service {paccache,fstrim}.timer
