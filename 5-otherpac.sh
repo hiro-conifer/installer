@@ -39,4 +39,9 @@ echo permit setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin} :whe
 # Enable Services
 systemctl enable {ufw,NetworkManager,systemd-{resolved,timesyncd},sshd}.service {paccache,fstrim}.timer
 
+# GPU Setting(AMD)
+if [ -n "`lspci | grep AMD`" ]; then
+  pacman -S --noconfirm xf86-video-amdgpu mesa lib32-mesa libva-mesa-driver mesa-vdpau vulkan-radeon
+  echo -e "DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1=1\nVK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json\nRADV_PERFTEST=rt,gpl,nv_ms" >> /etc/environment
+fi
 _EOF_
