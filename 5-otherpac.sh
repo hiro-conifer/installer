@@ -27,6 +27,14 @@ pacman -S --noconfirm clamav ufw opendoas networkmanager pacman-contrib
 
 # Setting Packages
 # Clamav
+echo -e "\
+DatabaseDirectory /var/lib/clamav\n\
+UpdateLogFile /var/log/clamav/freshclam.log\n\
+LogTime yes\n\
+LogSyslog no\n\
+PidFile /run/clamav/freshclam.pid\n\
+DatabaseOwner clamav\n\
+DatabaseMirror db.jp.clamav.net\" > /etc/clamav/freshclam.conf
 touch /var/log/clamav/freshclam.log && chown -R clamav:clamav /var/log/clamav
 freshclam
 
@@ -37,7 +45,7 @@ ufw default deny
 echo -e "permit setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin} :wheel\npermit persist :wheel" > /etc/doas.conf && chmod -c 0400 /etc/doas.conf
 
 # Enable Services
-systemctl enable {ufw,NetworkManager,systemd-{resolved,timesyncd},sshd}.service {paccache,fstrim}.timer
+systemctl enable {ufw,NetworkManager,systemd-{resolved,timesyncd},sshd}.service {paccache,fstrim,clamav-freshclam-once}.timer
 
 # GPU Setting(AMD)
 if [ -n "`lspci | grep AMD`" ]; then
