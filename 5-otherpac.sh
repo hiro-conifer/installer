@@ -34,7 +34,7 @@ LogTime yes\n\
 LogSyslog no\n\
 PidFile /run/clamav/freshclam.pid\n\
 DatabaseOwner clamav\n\
-DatabaseMirror db.jp.clamav.net\" > /etc/clamav/freshclam.conf
+DatabaseMirror db.jp.clamav.net" > /etc/clamav/freshclam.conf
 touch /var/log/clamav/freshclam.log && chown -R clamav:clamav /var/log/clamav
 freshclam
 
