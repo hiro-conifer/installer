@@ -40,6 +40,7 @@ freshclam
 
 # Ufw
 ufw default deny
+sed -i -e "s/\(ENABLED=\)no/\1yes/" /etc/ufw/ufw.conf
 
 # Opendoas
 echo -e "permit setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin} :wheel\npermit persist :wheel" > /etc/doas.conf && chmod -c 0400 /etc/doas.conf
