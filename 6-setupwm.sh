@@ -14,6 +14,7 @@ echo ${sudoop} | EDITOR='tee -a' visudo > /dev/null
 su $usernm << __EOF__
 
 # Install AUR Helper
+$aur -Sy
 $aur -S --noconfirm xorg-xwayland {qt5,qt6}-wayland \
                     sway{fx,lock-effects,idle,bg} waybar grim slurp kanshi mako \
                     nwg-look {materia-gtk,papirus-icon}-theme \
