@@ -14,6 +14,7 @@ su $usernm << __EOF__
 # Install AUR Helper
 cd && git clone https://aur.archlinux.org/$aur.git
 cd $aur && makepkg -si --noconfirm
+$aur -Sy
 
 # Change user & Disable nopassword
 __EOF__
