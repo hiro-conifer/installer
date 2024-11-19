@@ -15,20 +15,21 @@ su $usernm << __EOF__
 
 # Install AUR Helper
 $aur -Sy
+# $aur -S --noconfirm cli-visualizer heroic-games-launcher
 $aur -S --noconfirm xorg-xwayland {qt5,qt6}-wayland \
                     sway{fx,lock-effects,idle,bg} waybar grim slurp kanshi mako \
                     nwg-look {materia-gtk,papirus-icon}-theme \
                     lightdm{,-webkit2-{greeter,theme-glorious}} \
                     polkit{,-gnome} \
                     noto-fonts{,-{cjk,emoji,extra}} ttf-{defavu,jetbrains-mono-nerd,liberation}\
-                    kitty wofi nnn neofetch cli-visualizer \
+                    kitty wofi nnn neofetch \
                     pipewire wireplumber pipewire-{alsa,pulse} pavucontrol playerctl \
                     bluez{,-utils} blueman \
                     fcitx5{,-{configtool,gtk,mozc,qt}} \
                     xdg-desktop-portal{,-{gtk,wlr}} \
                     exa bat \
                     chezmoi vivaldi chromium \
-                    steam{,tinkerlaunch} heroic-games-launcher
+                    steam{,tinkerlaunch}
 
 # Chezmoi
 mkdir -p $dotdir && git clone https://github.com/hiro-conifer/dotfiles $dotdir
@@ -48,5 +49,12 @@ mv ${userdir}/.local/bin/sway.sh /usr/local/bin/ && chmod 775 /usr/local/bin/swa
 
 #lightdm
 mv ${userdir}/.local/bin/Wsession /etc/lightdm/
+sed -i -e "s/\(#greeter-session=\)example-gtk-gnome/\1lightdm-webkit2-greeter/" /etc/lightdm/lightdm.conf
+sed -i -e "s/\(session-wrapper=\/etc\/lightdm\/\)Xsession/\1Wsession/" /etc/lightdm/lightdm.conf
+
+sed -i -e "s/\(debug_mode          = \)false/\1true/" /etc/lightdm/lightdm.conf
+sed -i -e "s/\(webkit_theme        = \)antergos/\1glorious/" /etc/lightdm/lightdm.conf
+
+systemctl enable lightdm.service
 
 _EOF_
